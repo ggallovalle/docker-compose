@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  couchbasedb:
+    image: couchbase:${COUCHBASE_VERSION}
+    restart: always
+    ports:
+      - ${COUCHBASE_PORT}:8091
+    volumes:
+      - ./data:/opt/couchbase/var
+      # - type: bind # this syntax requires "data" to be created beforehand
+      #   source: ./data
+      #   target: /var/lib/postgresql/data
