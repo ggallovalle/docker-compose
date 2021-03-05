@@ -1,0 +1,24 @@
+version: "3.4"
+
+services:
+  postgresdb:
+    image: postgres:${POSTGRES_VERSION}
+    restart: always
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      - POSTGRES_PASSWORD
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      # - type: bind # this syntax requires "data" to be created beforehand
+      #   source: ./data
+      #   target: /var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 5431:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL:
+      PGADMIN_DEFAULT_PASSWORD:
