@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  couchbasedb:
+    image: couchdb:${COUCHDB_VERSION}
+    restart: always
+    ports:
+      - ${COUCHDB_PORT}:5984
+    volumes:
+      - ./data:/opt/couchdb/data
+    environment:
+      COUCHDB_USER:
+      COUCHDB_PASSWORD:
+      # - type: bind # this syntax requires "data" to be created beforehand
+      #   source: ./data
+      #   target: /var/lib/postgresql/data
