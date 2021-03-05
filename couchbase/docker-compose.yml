@@ -7,7 +7,7 @@ services:
     ports:
       - ${COUCHBASE_PORT}:8091
     volumes:
-      - ./data:/opt/couchbase/var
+      - ./.data:/opt/couchbase/var
       # - type: bind # this syntax requires "data" to be created beforehand
       #   source: ./data
       #   target: /var/lib/postgresql/data

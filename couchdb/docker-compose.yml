@@ -7,7 +7,7 @@ services:
     ports:
       - ${COUCHDB_PORT}:5984
     volumes:
-      - ./data:/opt/couchdb/data
+      - ./.data:/opt/couchdb/data
     environment:
       COUCHDB_USER:
       COUCHDB_PASSWORD:
