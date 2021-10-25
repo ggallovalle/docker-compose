@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+
+  mariadb:
+    image: mariadb:${MARIADB_VERSION?:error}
+    restart: always
+    ports:
+      - ${MARIADB_PORT?:error}:3306
+    env_file: 
+      - .env
