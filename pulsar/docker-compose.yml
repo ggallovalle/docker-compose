@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  standalone:
+    image: apachepulsar/pulsar:${PULSAR_VERSION?:error}
+    restart: always
+    expose:
+      - 8080
+      - 6650
+    ports:
+      - ${PULSAR_PORT?:error}:6650
+    env_file:
+      - .env
+    # volumes:
+    #   - ./pulsardata:/pulsar/data
+    #   - ./pulsarconf:/pulsar/conf
+    command: >
+      /bin/bash -c
+      "bin/apply-config-from-env.py conf/standalone.conf
+      && exec bin/pulsar standalone --advertised-address standalone"
+
+  dashboard:
+    image: apachepulsar/pulsar-dashboard
+    depends_on:
+      - standalone
+    ports:
+      - 80:80
+    env_file:
+      - .env
