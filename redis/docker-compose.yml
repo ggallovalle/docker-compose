@@ -1,11 +1,10 @@
-version: '3.8'
+version: "3.8"
 
 services:
-
   redisdb:
     image: redis:${REDIS_VERSION?:error}
     restart: always
     ports:
       - ${REDIS_PORT?:error}:6379
-    env_file: 
+    env_file:
       - .env

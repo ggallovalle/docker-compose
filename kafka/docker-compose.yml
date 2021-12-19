@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.7
+    ports:
+      - ${ZOOKEEPER_PORT?:error}:2181
+    volumes:
+      - "zookeeper_data:/bitnami"
+    env_file:
+      - .env
+
+  kafka:
+    image: docker.io/bitnami/kafka:3
+    ports:
+      - ${KAFKA_PORT?:error}:9092
+    volumes:
+      - "kafka_data:/bitnami"
+    env_file:
+      - .env
+    depends_on:
+      - zookeeper
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
