@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  cassandra:
+    image: cassandra:${CASSANDRA_VERSION}
+    restart: always
+    ports:
+      - ${CASSANDRA_PORT?:error}:9042
+    volumes:
+      - "./.data:/var/lib/cassandra"
+        # - type: bind # this syntax requires "data" to be created beforehand
+        #   source: ./data
+        #   target: /var/lib/postgresql/data
+    environment:
+      CASSANDRA_CLUSTER_NAME:

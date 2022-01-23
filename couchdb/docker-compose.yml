@@ -2,10 +2,10 @@ version: "3.4"
 
 services:
   couchbasedb:
-    image: couchdb:${COUCHDB_VERSION}
+    image: couchdb:${COUCHDB_VERSION?:error}
     restart: always
     ports:
-      - ${COUCHDB_PORT}:5984
+      - ${COUCHDB_PORT?:error}:5984
     volumes:
       - ./.data:/opt/couchdb/data
     environment:

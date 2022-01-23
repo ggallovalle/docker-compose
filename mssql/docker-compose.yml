@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
 
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:${SQLSERVER_VERSION?:error}
+  mssql:
+    image: mcr.microsoft.com/mssql/server:${MSSQL_VERSION?:error}
     restart: always
     ports:
-      - ${SQLSERVER_PORT?:error}:1433
+      - ${MSSQL_PORT?:error}:1433
     env_file: 
       - .env
