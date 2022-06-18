@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+
+  vault:
+    image: vault:${M_VERSION?:error}
+    # https://hub.docker.com/_/vault?tab=description
+    # https://github.com/hashicorp/docker-vault/blob/master/0.X/docker-entrypoint.sh
+    # https://github.com/hashicorp/docker-vault/blob/master/0.X/Dockerfile
+    command: vault server -config=/vault/config/local.hcl
+    restart: always
+    cap_add:
+      - "IPC_LOCK"
+    ports:
+      - ${M_PORT_1?:error}:8200
+    volumes:
+    #   - "./config:/bault/config"
+      - type: bind
+        source: ./config/local.hcl
+        target: /vault/config/local.hcl
+    env_file: 
+      - .env
+
+# volumes:
+#   vault-data:
