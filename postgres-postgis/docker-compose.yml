@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+
+  postgresdb_postgis:
+    image: postgis/postgis:${POSTGIS_VERSION?:error}
+     
+    restart: always
+    ports:
+      - ${POSTGRES_PORT?:error}:5432
+    env_file: 
+      - .env
